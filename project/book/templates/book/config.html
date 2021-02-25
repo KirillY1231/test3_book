@@ -1,0 +1,31 @@
+{% extends 'book/base.html' %}
+{% load static %}
+
+{% block title %}
+AddressBook - Add new
+{% endblock %}
+
+{% block content %}
+<h2 class="font-weight-bold text-center bg-warning p-4">
+    Добавить
+</h2>
+<div class="container">
+        <div class="row">
+        <div class="col-12 mt-3">
+        <form action="{% url 'book:new_person' %}"
+                  method="post"
+                  enctype="multipart/form-data"  >
+                {%  csrf_token %}
+	                {% for field in  person_model_form %}
+                    <label> {{ field.label }} </label>
+                    <div class="form-group">
+                        {{ field }}
+                    </div>
+	                {% endfor %}
+
+            <input class="btn btn-warning mt-3" type="submit" value="Добавить">
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
